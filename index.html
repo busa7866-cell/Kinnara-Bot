@@ -33,12 +33,11 @@
         }
 
         .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px; /* ဒီက ၂၀ ကို ၂၅ ဒါမှမဟုတ် ၃၀ ပြောင်းကြည့်ပါ */
+   }
         .header-content {
             display: flex;
             align-items: center;
@@ -261,6 +260,29 @@
         .nav-item.active { color: #FFD700; }
         .nav-item i { font-size: 22px; margin-bottom: 4px; }
         .nav-text { font-size: 10px; font-weight: 700; text-transform: uppercase; }
+
+        /* --- Mobile Size Fix (ဒီနေရာမှာ ဒါလေးကို ကူးထည့်လိုက်ပါ) --- */
+        @media (max-width: 480px) {
+            .header-top {
+                padding: 0 15px; 
+            }
+            .pfp-logo {
+                width: 65px;
+                height: 65px;
+            }
+            .main-title {
+                font-size: 22px; 
+                letter-spacing: 1px;
+            }
+            .lang-switch {
+                font-size: 11px;
+                padding: 4px 8px;
+                margin-top: 5px;
+            }
+            .header-content {
+                gap: 10px;
+            }
+        }
 
     </style>
 </head>
