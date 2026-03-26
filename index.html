@@ -14,64 +14,127 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* Brighter, Cleaner Dark Mode with Premium Gold Vibe */
         body {
-            background-color: #050505;
+            background-color: #0d0d0d; 
             color: #ffffff;
             height: 100vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            background-image: radial-gradient(circle at 50% 10%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            background-image: radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.15) 0%, transparent 60%);
         }
 
-        /* --- Header Section (Logo + Title) --- */
+        /* --- Header Section --- */
         .header {
             width: 100%;
-            padding-top: 40px;
-            padding-bottom: 10px;
+            padding-top: 30px;
+            position: relative;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
         }
 
         .header-content {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 0 20px;
+            gap: 18px;
         }
 
+        /* HD 1080p Full Logo (Non-Circle, Larger, Crisp) */
         .pfp-logo {
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #FFD700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            width: 85px;
+            height: 85px;
+            border-radius: 14px; /* Premium slightly rounded square instead of circle */
+            object-fit: cover; /* Ensures full visibility */
+            object-position: center;
+            border: 2px solid rgba(255, 215, 0, 0.8);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), inset 0 0 10px rgba(255, 215, 0, 0.3);
+            image-rendering: -webkit-optimize-contrast; /* HD Sharpness */
+            background-color: #000;
         }
 
         .main-title {
-            font-size: 38px;
+            font-size: 34px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            background: linear-gradient(180deg, #FFE259 0%, #FFA751 100%);
+            letter-spacing: 2px;
+            background: linear-gradient(180deg, #FFF6B7 0%, #F6A942 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0px 4px 15px rgba(255, 215, 0, 0.3);
+            text-shadow: 0px 5px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Language Switcher */
+        .lang-switch {
+            font-size: 14px;
+            color: #888;
+            font-weight: bold;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            background: rgba(255, 215, 0, 0.05);
+            padding: 5px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .lang-btn {
+            position: relative;
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s;
+            overflow: hidden;
+        }
+
+        .lang-btn.active { color: #FFD700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.5); }
+
+        /* Water-drop Ripple Animation */
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.7);
+            transform: scale(0);
+            animation: ripple 0.4s ease-out;
+            pointer-events: none;
+            width: 20px; height: 20px;
+            left: 50%; top: 50%;
+            margin-left: -10px; margin-top: -10px;
+        }
+        @keyframes ripple { to { transform: scale(4); opacity: 0; } }
+
+        /* The Prominent Gold Line */
+        .gold-line {
+            width: 92%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #FFD700, #FFA500, #FFD700, transparent);
+            margin: 20px auto 5px auto;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 5px rgba(255, 255, 255, 0.4);
         }
 
         /* --- Main Content Area --- */
         .content { 
             flex: 1; 
-            padding: 10px 20px;
+            padding: 15px 20px;
             overflow-y: auto;
             padding-bottom: 110px;
             scrollbar-width: none;
         }
         .content::-webkit-scrollbar { display: none; }
 
+        .page-section { display: none; animation: fadeIn 0.3s; }
+        .page-section.active-page { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
         /* --- Filter Bar --- */
         .filter-bar {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             overflow-x: auto;
             padding: 10px 0;
             margin-bottom: 15px;
@@ -80,37 +143,38 @@
         .filter-bar::-webkit-scrollbar { display: none; }
 
         .filter-btn {
-            background: rgba(255, 215, 0, 0.05);
+            background: rgba(255, 215, 0, 0.08);
             border: 1px solid rgba(255, 215, 0, 0.3);
-            color: #ccc;
-            border-radius: 15px;
-            padding: 8px 15px;
-            font-size: 12px;
+            color: #e0e0e0;
+            border-radius: 12px;
+            padding: 10px 16px;
+            font-size: 13px;
             font-weight: 600;
             white-space: nowrap;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
         .filter-btn.active-filter {
-            background: rgba(255, 215, 0, 0.2);
+            background: rgba(255, 215, 0, 0.25);
             color: #FFD700;
             border-color: #FFD700;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
         }
 
         /* --- Dropdown Panel --- */
         .dropdown-panel {
             display: none;
-            background: rgba(15, 15, 15, 0.95);
+            background: rgba(18, 18, 18, 0.98);
             border: 1px solid rgba(255, 215, 0, 0.4);
             border-radius: 16px;
-            padding: 15px;
+            padding: 18px;
             margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.8);
             animation: slideDown 0.3s ease-out;
         }
 
@@ -124,121 +188,262 @@
             justify-content: space-between;
             align-items: center;
             color: #FFD700;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
-            padding-bottom: 8px;
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding-bottom: 10px;
+            text-transform: uppercase;
         }
 
         .close-btn {
             cursor: pointer;
-            font-size: 18px;
+            font-size: 20px;
             color: #888;
             padding: 5px;
+            transition: color 0.2s;
         }
+        .close-btn:active { color: #FFD700; }
 
         .dropdown-item {
-            padding: 10px;
-            font-size: 12px;
-            color: #ddd;
-            border-radius: 10px;
-            margin-bottom: 6px;
-            background: rgba(255,255,255,0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 12px;
+            font-size: 14px;
+            color: #eee;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            background: rgba(255,255,255,0.05);
             cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
         }
-        .dropdown-item:active { background: rgba(255, 215, 0, 0.15); color: #FFD700; }
+        .dropdown-item:active { background: rgba(255, 215, 0, 0.2); color: #FFD700; transform: scale(0.98); }
+
+        .item-value {
+            font-weight: bold;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .currency-divider {
+            color: #888;
+            font-weight: normal;
+            margin: 0 4px;
+        }
+
+        .item-unit {
+            font-size: 10px;
+            color: #bbb;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
 
         /* --- Navigation --- */
         .nav-container {
             position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 400px; height: 75px; background: rgba(15, 15, 15, 0.85);
-            backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid rgba(255, 215, 0, 0.3);
+            width: 90%; max-width: 400px; height: 75px; background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid rgba(255, 215, 0, 0.5);
             display: flex; justify-content: space-around; align-items: center; padding: 0 10px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9);
         }
         .nav-indicator {
             position: absolute; top: 50%; transform: translateY(-50%); width: 65px; height: 55px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
-            border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 18px; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); z-index: 0;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.05) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.6); border-radius: 18px; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); z-index: 0;
+            box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.2);
         }
-        .nav-item { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 65px; height: 55px; color: #555; transition: 0.3s; }
+        .nav-item { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 65px; height: 55px; color: #777; transition: 0.3s; cursor: pointer; }
         .nav-item.active { color: #FFD700; }
         .nav-item i { font-size: 22px; margin-bottom: 4px; }
-        .nav-text { font-size: 9px; font-weight: 700; text-transform: uppercase; }
+        .nav-text { font-size: 10px; font-weight: 700; text-transform: uppercase; }
 
     </style>
 </head>
 <body>
 
     <header class="header">
-        <div class="header-content">
-            <img src="https://i.ibb.co/PsMwstKZ/IMG-20260326-211528-073.jpg" class="pfp-logo">
-            <h1 class="main-title">KINNARA</h1>
+        <div class="header-top">
+            <div class="header-content">
+                <img src="https://i.ibb.co/PsMwstKZ/IMG-20260326-211528-073.jpg" class="pfp-logo">
+                <h1 class="main-title" data-i18n="kinnara">KINNARA</h1>
+            </div>
+            
+            <div class="lang-switch">
+                <span id="btn-en" class="lang-btn active" onclick="setLanguage('en', event)">Eng</span> | 
+                <span id="btn-my" class="lang-btn" onclick="setLanguage('my', event)">မြန်မာ</span>
+            </div>
         </div>
+        <div class="gold-line"></div>
     </header>
 
     <main class="content">
         
-        <div class="filter-bar">
-            <div class="filter-btn" onclick="toggleDropdown('nft-panel', this)">NFT <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="filter-btn" onclick="toggleDropdown('model-panel', this)">Model <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="filter-btn" onclick="toggleDropdown('backdrop-panel', this)">Backdrop <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="filter-btn" onclick="toggleDropdown('symbol-panel', this)">Symbol <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="filter-btn" onclick="toggleDropdown('price-panel', this)">Price <i class="fa-solid fa-chevron-down"></i></div>
+        <div id="home-page" class="page-section active-page">
+            <div class="filter-bar">
+                <div class="filter-btn" onclick="toggleDropdown('nft-panel', this)"><span data-i18n="nft">NFT</span> <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="filter-btn" onclick="toggleDropdown('model-panel', this)"><span data-i18n="model">Model</span> <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="filter-btn" onclick="toggleDropdown('backdrop-panel', this)"><span data-i18n="backdrop">Backdrop</span> <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="filter-btn" onclick="toggleDropdown('symbol-panel', this)"><span data-i18n="symbol">Symbol</span> <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="filter-btn" onclick="toggleDropdown('price-panel', this)"><span data-i18n="price">Price</span> <i class="fa-solid fa-chevron-down"></i></div>
+            </div>
+
+            <div id="nft-panel" class="dropdown-panel">
+                <div class="dropdown-header"><span data-i18n="nft_cat">NFT Category</span><i class="fa-solid fa-xmark close-btn" onclick="closeAllDropdowns()"></i></div>
+                <div class="dropdown-item">
+                    <span>🐍 <span data-i18n="snake">Snake</span></span>
+                    <span class="item-value">0.00 <span class="item-unit">TON</span> <span class="currency-divider">/</span> 0.00 <span class="item-unit">MMK</span></span>
+                </div>
+                <div class="dropdown-item">
+                    <span>🍰 <span data-i18n="cake">Cake</span></span>
+                    <span class="item-value">0.00 <span class="item-unit">TON</span> <span class="currency-divider">/</span> 0.00 <span class="item-unit">MMK</span></span>
+                </div>
+                <div class="dropdown-item">
+                    <span>🌸 <span data-i18n="flower">Flower</span></span>
+                    <span class="item-value">0.00 <span class="item-unit">TON</span> <span class="currency-divider">/</span> 0.00 <span class="item-unit">MMK</span></span>
+                </div>
+            </div>
+
+            <div id="model-panel" class="dropdown-panel">
+                <div class="dropdown-header"><span data-i18n="model_cat">3D Model</span><i class="fa-solid fa-xmark close-btn" onclick="closeAllDropdowns()"></i></div>
+                <div class="dropdown-item">
+                    <span>⚫ <span data-i18n="black">Black</span></span>
+                    <span class="item-value">1%</span>
+                </div>
+                <div class="dropdown-item">
+                    <span>🟣 <span data-i18n="purple">Purple</span></span>
+                    <span class="item-value">3%</span>
+                </div>
+                <div class="dropdown-item">
+                    <span>🔵 <span data-i18n="blue">Blue</span></span>
+                    <span class="item-value">5%</span>
+                </div>
+            </div>
+
+            <div id="price-panel" class="dropdown-panel">
+                <div class="dropdown-header"><span data-i18n="price_cat">Price Sorting</span><i class="fa-solid fa-xmark close-btn" onclick="closeAllDropdowns()"></i></div>
+                <div class="dropdown-item">
+                    <span data-i18n="low_to_high">Low to High</span>
+                    <span class="item-unit">TON/MMK</span>
+                </div>
+                <div class="dropdown-item">
+                    <span data-i18n="high_to_low">High to Low</span>
+                    <span class="item-unit">TON/MMK</span>
+                </div>
+            </div>
+
+            <div id="backdrop-panel" class="dropdown-panel">
+                <div class="dropdown-header"><span data-i18n="backdrop">Backdrop View</span><i class="fa-solid fa-xmark close-btn" onclick="closeAllDropdowns()"></i></div>
+                <div class="dropdown-item"><span data-i18n="dark_vibe">Dark Royal Vibe</span></div>
+                <div class="dropdown-item"><span data-i18n="neon_gold">Neon Gold Effect</span></div>
+            </div>
+
+            <div id="symbol-panel" class="dropdown-panel">
+                <div class="dropdown-header"><span data-i18n="symbol">Core Symbol</span><i class="fa-solid fa-xmark close-btn" onclick="closeAllDropdowns()"></i></div>
+                <div class="dropdown-item"><span data-i18n="lotus">Lotus Symbol</span></div>
+                <div class="dropdown-item"><span data-i18n="dragon">Golden Dragon</span></div>
+            </div>
         </div>
 
-        <div id="nft-panel" class="dropdown-panel">
-            <div class="dropdown-header"><span>NFT Category</span><i class="fa-solid fa-xmark close-btn" onclick="closeAllDropdowns()"></i></div>
-            <div class="dropdown-item">🔥 Legendary Kinnara</div>
-            <div class="dropdown-item">✨ Epic Asset</div>
-            <div class="dropdown-item">🌟 Rare Collection</div>
+        <div id="store-page" class="page-section">
+            <h3 style="color: #FFD700; text-align: center; margin-top: 50px;" data-i18n="store_soon">Store Items Coming Soon...</h3>
         </div>
 
-        <div id="model-panel" class="dropdown-panel">
-            <div class="dropdown-header"><span>3D Model</span><i class="fa-solid fa-xmark close-btn" onclick="closeAllDropdowns()"></i></div>
-            <div class="dropdown-item">Myanmar Kanote Style</div>
-            <div class="dropdown-item">Modern 3D Box</div>
-        </div>
-
-        <div id="backdrop-panel" class="dropdown-panel">
-            <div class="dropdown-header"><span>Backdrop View</span><i class="fa-solid fa-xmark close-btn" onclick="closeAllDropdowns()"></i></div>
-            <div class="dropdown-item">Dark Royal Vibe</div>
-            <div class="dropdown-item">Neon Gold Effect</div>
-        </div>
-
-        <div id="symbol-panel" class="dropdown-panel">
-            <div class="dropdown-header"><span>Core Symbol</span><i class="fa-solid fa-xmark close-btn" onclick="closeAllDropdowns()"></i></div>
-            <div class="dropdown-item">Lotus Symbol</div>
-            <div class="dropdown-item">Golden Dragon</div>
-        </div>
-
-        <div id="price-panel" class="dropdown-panel">
-            <div class="dropdown-header"><span>Price Sorting</span><i class="fa-solid fa-xmark close-btn" onclick="closeAllDropdowns()"></i></div>
-            <div class="dropdown-item">High to Low (TON)</div>
-            <div class="dropdown-item">Low to High (TON)</div>
+        <div id="profile-page" class="page-section">
+            <h3 style="color: #FFD700; text-align: center; margin-top: 50px;" data-i18n="profile_soon">User Profile Area</h3>
         </div>
 
     </main>
 
     <div class="nav-container">
         <div class="nav-indicator" id="indicator"></div>
-        <div class="nav-item" onclick="setActive(this)">
+        <div class="nav-item" onclick="switchPage('store', this)">
             <i class="fa-solid fa-bag-shopping"></i> 
-            <span class="nav-text">Store</span>
+            <span class="nav-text" data-i18n="store">Store</span>
         </div>
-        <div class="nav-item active" onclick="setActive(this)">
+        <div class="nav-item active" onclick="switchPage('home', this)">
             <i class="fa-solid fa-house-chimney"></i>
-            <span class="nav-text">Home</span>
+            <span class="nav-text" data-i18n="home">Home</span>
         </div>
-        <div class="nav-item" onclick="setActive(this)">
+        <div class="nav-item" onclick="switchPage('profile', this)">
             <i class="fa-solid fa-circle-user"></i> 
-            <span class="nav-text">Profile</span>
+            <span class="nav-text" data-i18n="profile">Profile</span>
         </div>
     </div>
 
 <script>
-    // Toggle Dropdown Panel
+    // --- Page Switching Logic ---
+    function switchPage(pageId, el) {
+        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+        el.classList.add('active');
+        updateIndicator(el);
+
+        document.querySelectorAll('.page-section').forEach(page => page.classList.remove('active-page'));
+        document.getElementById(pageId + '-page').classList.add('active-page');
+
+        closeAllDropdowns(); 
+
+        if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+        }
+    }
+
+    // --- Translation Logic ---
+    const dict = {
+        en: {
+            kinnara: "KINNARA", home: "Home", store: "Store", profile: "Profile",
+            nft: "NFT", model: "Model", backdrop: "Backdrop", symbol: "Symbol", price: "Price",
+            nft_cat: "NFT Category", model_cat: "3D Model", price_cat: "Price Sorting",
+            snake: "Snake", cake: "Cake", flower: "Flower",
+            black: "Black", purple: "Purple", blue: "Blue",
+            low_to_high: "Low to High", high_to_low: "High to Low",
+            dark_vibe: "Dark Royal Vibe", neon_gold: "Neon Gold Effect",
+            lotus: "Lotus Symbol", dragon: "Golden Dragon",
+            store_soon: "Store Items Coming Soon...", profile_soon: "User Profile Area"
+        },
+        my: {
+            kinnara: "ကိန္နရာ", home: "မူလစာမျက်နှာ", store: "အိတ်", profile: "ပရိုဖိုင်",
+            nft: "NFT", model: "မော်ဒယ်", backdrop: "နောက်ခံ", symbol: "သင်္ကေတ", price: "ဈေးနှုန်း",
+            nft_cat: "NFT အမျိုးအစား", model_cat: "3D မော်ဒယ်", price_cat: "ဈေးနှုန်း စီစဉ်ရန်",
+            snake: "မြွေ", cake: "ကိတ်မုန့်", flower: "ပန်း",
+            black: "အမည်းရောင်", purple: "ခရမ်းရောင်", blue: "အပြာရောင်",
+            low_to_high: "နည်းရာမှ များရာသို့", high_to_low: "များရာမှ နည်းရာသို့",
+            dark_vibe: "မှောင်မိုက်သော အငွေ့အသက်", neon_gold: "ရွှေရောင် နီယွန်",
+            lotus: "ကြာပန်း သင်္ကေတ", dragon: "ရွှေနဂါး",
+            store_soon: "အိတ်စာမျက်နှာ လာမည်...", profile_soon: "ပရိုဖိုင် အချက်အလက်များ"
+        }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang, event) {
+        if (currentLang === lang) return;
+        currentLang = lang;
+
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        document.getElementById('btn-my').classList.toggle('active', lang === 'my');
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dict[lang][key]) el.innerText = dict[lang][key];
+        });
+
+        const target = event.currentTarget;
+        const circle = document.createElement('span');
+        circle.classList.add('ripple-effect');
+        target.appendChild(circle);
+        setTimeout(() => circle.remove(), 400); 
+
+        if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+        }
+    }
+
+    // --- Dropdown & UI Logic ---
     function toggleDropdown(panelId, btnElement) {
         const targetPanel = document.getElementById(panelId);
         const isOpen = targetPanel.style.display === 'block';
@@ -250,26 +455,12 @@
             btnElement.classList.add('active-filter');
         }
         
-        if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
-        }
+        if (window.Telegram && window.Telegram.WebApp) window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
     }
 
-    // Close All Panels
     function closeAllDropdowns() {
         document.querySelectorAll('.dropdown-panel').forEach(p => p.style.display = 'none');
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active-filter'));
-    }
-
-    // Nav Active State
-    function setActive(el) {
-        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-        el.classList.add('active');
-        updateIndicator(el);
-        
-        if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
-        }
     }
 
     function updateIndicator(el) {
